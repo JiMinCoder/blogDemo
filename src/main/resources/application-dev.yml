@@ -1,0 +1,20 @@
+spring:
+#注册数据库
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.12.51.117:3306/blog?useUnicode=true&serverTimezone=UTC&characterEncoding=utf-8
+    username: root
+    password: root
+#    设置sql语句
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+#    设置日志所在目录以及日志名称和日志的写入的等级
+logging:
+  level:
+    root: info
+    com.my.blog: debug
+  file: log/Blog-dev.log
+server:
+  port: 8089
