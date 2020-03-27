@@ -1,10 +1,6 @@
 package com.my.blog.po;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.w3c.dom.ls.LSException;
-
 import javax.persistence.*;
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

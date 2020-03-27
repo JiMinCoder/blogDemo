@@ -1,11 +1,11 @@
 package com.my.blog.web;
 
-import com.my.blog.NotFoundException;
 import com.my.blog.service.BlogService;
 import com.my.blog.service.TagService;
 import com.my.blog.service.TypeService;
 import com.my.blog.vo.BlogQuery;
-import com.sun.org.apache.xpath.internal.operations.Mod;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -38,16 +38,17 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(@PageableDefault(size = 10,sort = {"updateTime"},direction = Sort.Direction.DESC) Pageable pageable,
-                        BlogQuery blog, Model model){
-        model.addAttribute("page",blogService.listBlog(pageable));
-        model.addAttribute("types",typeService.listTypeTop(6));
-        model.addAttribute("tags",tagService.listTagTop(10));
-        model.addAttribute("recommendBlogs",blogService.listRecommendBlogTop(8));
-        return "index";
+                BlogQuery blog, Model model){
+            model.addAttribute("page",blogService.listBlog(pageable));
+            model.addAttribute("types",typeService.listTypeTop(6));
+            model.addAttribute("tags",tagService.listTagTop(10));
+            model.addAttribute("recommendBlogs",blogService.listRecommendBlogTop(8));
+//            footerBlog(model);
+            return "index";
     }
 
     @GetMapping("/search")
-    public String search(@PageableDefault(size = 15, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+    public String search(@PageableDefault(size = 5, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                          @RequestParam String query, Model model) {
         model.addAttribute("page", blogService.listBlog("%"+query+"%", pageable));
         model.addAttribute("query", query);
@@ -59,4 +60,11 @@ public class IndexController {
         model.addAttribute("blog",blogService.getAndConvert(id));
         return "blog";
     }
+
+    @GetMapping("/footerBlog")
+    public String footerBlog(Model model){
+        model.addAttribute("footerBlog",blogService.listBlogTop(3));
+        return "_fragments";
+    }
+
 }

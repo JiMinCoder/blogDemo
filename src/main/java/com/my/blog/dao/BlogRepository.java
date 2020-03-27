@@ -1,6 +1,7 @@
 package com.my.blog.dao;
 
 import com.my.blog.po.Blog;
+import com.my.blog.po.Type;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,4 +34,7 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
 
     @Query("select b from Blog b where function('date_format',b.updateTime,'%Y') = ?1")
     List<Blog> findByYear(String year);
+
+    @Query("select b from Blog b")
+    List<Blog> findByTop(Pageable pageable);
 }

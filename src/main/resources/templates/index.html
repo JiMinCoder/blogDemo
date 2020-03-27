@@ -9,6 +9,7 @@
 </head>
 <body>
 
+
 <!--导航-->
 <nav th:replace="_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
   <div class="ui container">
@@ -34,6 +35,7 @@
 
 <!--中间内容-->
 <div  class="m-container m-padded-tb-big">
+
   <div class="ui container">
     <div class="ui stackable grid">
       <!--左边博客列表-->
@@ -81,7 +83,7 @@
 
               <div class="five wide column">
                 <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
-                  <img src="https://unsplash.it/800/450?image=1005" th:src="@{${blog.firstPicture}}"  alt="" class="ui rounded image">
+                  <img src="https://unsplash.it/800/450?image=1005" th:src="@{${blog.firstPicture}}"  alt="没了嘿嘿" class="ui rounded image">
                 </a>
               </div>
 

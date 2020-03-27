@@ -1,16 +1,18 @@
 package com.my.blog.aspect;
 
+import com.my.blog.web.IndexController;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
-import java.util.logging.Logger;
 
 /**
  * aop->面向切面
@@ -23,6 +25,8 @@ import java.util.logging.Logger;
 public class LogAspect {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
+
+
 
 //    设置拦路径 本路径为web下的所有控制器中的所有方法（不限参数）
     @Pointcut("execution(* com.my.blog.web.*.*(..))")
@@ -43,6 +47,8 @@ public class LogAspect {
 
         RequestLog requestLog = new RequestLog(url,ip,classMethod,args);
         logger.info("Request: {}",requestLog);
+
+
     }
 
     @After("log()")

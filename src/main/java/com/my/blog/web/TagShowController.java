@@ -30,6 +30,8 @@ public class TagShowController {
     @Autowired
     private BlogService blogService;
 
+    @Autowired
+    private IndexController indexController;
     @GetMapping("/tags/{id}")
     public String tags(@PageableDefault(size = 10, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                        @PathVariable Long id, Model model) {
@@ -40,6 +42,7 @@ public class TagShowController {
         model.addAttribute("tags", tags);
         model.addAttribute("page", blogService.listBlog(id,pageable));
         model.addAttribute("activeTagId", id);
+        indexController.footerBlog(model);
         return "tags";
     }
 }

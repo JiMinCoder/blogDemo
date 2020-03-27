@@ -64,6 +64,13 @@ public class BlogServiceImpl implements BlogService {
         return repository.findAll(pageable);
     }
 
+    @Override
+    public List<Blog> listBlogTop(Integer size) {
+//        Sort sort = Sort.by(Sort.Direction.DESC,"blogs.size");
+        Pageable pageable = PageRequest.of(0,size);
+        return repository.findByTop(pageable);
+    }
+
 
     @Override
     public Page<Blog> listBlog(Long tagId,Pageable pageable) {

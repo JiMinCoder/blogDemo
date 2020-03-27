@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -27,10 +29,7 @@ class BlogServiceImplTest {
 
     @Test
     void getBlog() {
-        Blog blog = service.getBlog((long) 23);
-        Blog one = repository.getOne((long) 23);
-        System.out.println(one);
-        System.out.println(blog);
-
+        List<Blog> blogs = service.listBlogTop(3);
+        System.out.println(blogs);
     }
 }
