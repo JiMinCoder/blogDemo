@@ -27,9 +27,4 @@ class BlogServiceImplTest {
     @Autowired
     private BlogRepository repository;
 
-    @Test
-    void getBlog() {
-        List<Blog> blogs = service.listBlogTop(3);
-        System.out.println(blogs);
-    }
 }

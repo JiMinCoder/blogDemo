@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 /**
+ * 类型
  * @auther 周经明
  * @date 2020/3/22 9:58
  */
@@ -24,6 +25,9 @@ public class TypeShowController {
 
     @Autowired
     private TypeService typeService;
+
+    @Autowired
+    private IndexController indexController;
 
     @Autowired
     private BlogService blogService;
@@ -40,6 +44,8 @@ public class TypeShowController {
         model.addAttribute("types",types);
         model.addAttribute("page",blogService.listBlog(pageable,blogQuery));
         model.addAttribute("activeTypeId",id);
+
+        indexController.footerBlog(model);
         return "types";
     }
 

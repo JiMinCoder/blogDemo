@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.persistence.GeneratedValue;
 
 /**
+ * 主页
  * @auther 周经明
  * @date 2020/3/16 10:03
  */
@@ -43,7 +44,7 @@ public class IndexController {
             model.addAttribute("types",typeService.listTypeTop(6));
             model.addAttribute("tags",tagService.listTagTop(10));
             model.addAttribute("recommendBlogs",blogService.listRecommendBlogTop(8));
-//            footerBlog(model);
+            footerBlog(model);
             return "index";
     }
 
@@ -52,18 +53,20 @@ public class IndexController {
                          @RequestParam String query, Model model) {
         model.addAttribute("page", blogService.listBlog("%"+query+"%", pageable));
         model.addAttribute("query", query);
+        footerBlog(model);
         return "search";
     }
 
     @GetMapping("/blog/{id}")
     public String blog(@PathVariable Long id, Model model){
         model.addAttribute("blog",blogService.getAndConvert(id));
+        footerBlog(model);
         return "blog";
     }
 
     @GetMapping("/footerBlog")
     public String footerBlog(Model model){
-        model.addAttribute("footerBlog",blogService.listBlogTop(3));
+        model.addAttribute("footerBlog",blogService.listRecommendBlogTop(3));
         return "_fragments";
     }
 

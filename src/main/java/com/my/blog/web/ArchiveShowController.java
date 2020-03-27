@@ -17,10 +17,14 @@ public class ArchiveShowController {
     @Autowired
     private BlogService blogService;
 
+    @Autowired
+    private IndexController indexController;
+
     @GetMapping("/archive")
     public String archive(Model model){
         model.addAttribute("archiveMap",blogService.archiveBlog());
         model.addAttribute("blogCount",blogService.countBlog());
+        indexController.footerBlog(model);
         return "archives";
     }
 }

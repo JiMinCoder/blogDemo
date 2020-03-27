@@ -21,7 +21,6 @@ public interface BlogService {
 
     Page<Blog> listBlog(Pageable pageable);
 
-    List<Blog> listBlogTop(Integer size);
 
     Page<Blog> listBlog(Long tagId,Pageable pageable);
 
