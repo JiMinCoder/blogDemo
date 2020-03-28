@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.my.blog.service.impl.BlogServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.357 s <<< FAILURE! - in com.my.blog.service.impl.BlogServiceImplTest
+getBlog  Time elapsed: 0.348 s  <<< ERROR!
+org.hibernate.LazyInitializationException: could not initialize proxy [com.my.blog.po.Blog#23] - no Session
+	at com.my.blog.service.impl.BlogServiceImplTest.getBlog(BlogServiceImplTest.java:32)
+
